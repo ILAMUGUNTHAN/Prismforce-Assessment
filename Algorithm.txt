@@ -1,0 +1,58 @@
+step 1 : Initialization
+
+Create a boolean array regenerated of size n (number of enemy circles) initialized to false.
+Initialize the number of enemy circles n as the count of elements in enemyPowers.
+
+
+step 2 : Iterate Over Each Circle
+
+Loop through each circle from 0 to n-1 (inclusive).
+
+
+step 3 : Regeneration Check for Specific Enemies (k3 and k7)
+
+If the current index i is 2 (k3) or 6 (k7):
+  Check if the enemy has not regenerated (!regenerated[i]).
+If not regenerated, increase the enemy's power by half of its initial power (enemyPowers[i] += enemyPowers[i] / 2).
+  Mark the enemy as regenerated (regenerated[i] = true).
+
+
+step 4 : Skip Battle Logic
+
+If skipBattles is greater than 0:
+  Decrease skipBattles by 1.
+  Continue to the next iteration (skip the current battle).
+
+
+step 5 : Recharge Logic
+
+If rechargeTimes is greater than 0 and Abhimanyu's power (abhimanyuPower) is less than the enemy's power (enemyPowers[i]):
+  Recharge Abhimanyu's power by rechargePower.
+  Decrease rechargeTimes by 1.
+
+
+step 6 : Battle Logic
+
+If Abhimanyu's power (abhimanyuPower) is less than the enemy's power (enemyPowers[i]):
+  Return false (Abhimanyu loses the battle).
+Otherwise:
+  Decrease Abhimanyu's power by the enemy's power (abhimanyuPower -= enemyPowers[i]).
+
+
+step 7 : Attack from Behind by Regenerating Enemies
+
+If the current index i is 3 and the enemy at index 2 has regenerated:
+  If Abhimanyu's power is less than the power of the regenerated enemy (enemyPowers[2]):
+    Return false (Abhimanyu loses the battle).
+  Otherwise:
+    Decrease Abhimanyu's power by the regenerated enemy's power (abhimanyuPower -= enemyPowers[2]).
+If the current index i is 7 and the enemy at index 6 has regenerated:
+  If Abhimanyu's power is less than the power of the regenerated enemy (enemyPowers[6]):
+    Return false (Abhimanyu loses the battle).
+  Otherwise:
+    Decrease Abhimanyu's power by the regenerated enemy's power (abhimanyuPower -= enemyPowers[6]).
+
+
+step 8 : Completion
+
+If the loop completes and Abhimanyu has crossed all circles, return true.
